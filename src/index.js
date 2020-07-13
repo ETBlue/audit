@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom'
 import { HashRouter as Router } from 'react-router-dom'
 
 import App from 'App'
-import 'index.css'
-
 import * as serviceWorker from 'serviceWorker'
+
+import 'semantic-ui-css/semantic.min.css'
+import 'index.css'
 
 ReactDOM.render(
   <React.StrictMode>
