@@ -23,7 +23,7 @@ const MainMenu = () => {
 
   return (
     <StyledMenu>
-      <Menu inverted borderless color='teal'>
+      <Menu inverted borderless stackable color='teal'>
         <Menu.Item>Audit Helper</Menu.Item>
         {STATUSES.map(s => (
           <Menu.Item

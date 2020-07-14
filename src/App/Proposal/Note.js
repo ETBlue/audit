@@ -18,7 +18,7 @@ const Note = ({ proposal }) => {
 
   return (
     <Grid columns={2} stackable>
-      <Grid.Column>
+      <Grid.Column width={10}>
         <Form>
           {FACETS.map(
             item =>
@@ -49,7 +49,7 @@ const Note = ({ proposal }) => {
           )}
         </Form>
       </Grid.Column>
-      <Grid.Column>
+      <Grid.Column width={6}>
         <Menu secondary vertical fluid>
           {STATUSES.map(s => (
             <Menu.Item

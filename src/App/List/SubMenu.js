@@ -28,7 +28,7 @@ const SubMenu = () => {
 
   return (
     <StyledContainer>
-      <Menu secondary widths={5}>
+      <Menu secondary stackable widths={5}>
         {MENUS.map(({ type, configs }) => (
           <Dropdown
             key={type}
