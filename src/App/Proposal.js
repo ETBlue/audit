@@ -2,6 +2,8 @@ import React from 'react'
 import { Header, Divider, Grid, Icon } from 'semantic-ui-react'
 import styled from 'styled-components'
 
+import { MAX_CONTENT_WIDTH } from 'App/config'
+
 import Meta from './Proposal/Meta'
 import Speakers from './Proposal/Speakers'
 import Note from './Proposal/Note'
@@ -10,10 +12,10 @@ const Proposal = ({ proposal }) => {
   return (
     <StyledContainer>
       <Grid stackable columns={3} key={proposal.id}>
-        <Grid.Column width={4}>
+        <Grid.Column width={3}>
           <Meta proposal={proposal} />
         </Grid.Column>
-        <Grid.Column width={8}>
+        <Grid.Column width={6}>
           <Header as='h3'>
             <a href={proposal.url} target='_blank'>
               {proposal.title}
@@ -34,7 +36,7 @@ const Proposal = ({ proposal }) => {
           <Divider />
           <Speakers speakers={proposal.speakers} />
         </Grid.Column>
-        <Grid.Column width={4}>
+        <Grid.Column width={7}>
           <Note proposal={proposal} />
         </Grid.Column>
       </Grid>
@@ -46,7 +48,7 @@ export default Proposal
 
 const StyledContainer = styled.section`
   width: 100%;
-  max-width: 1680px;
+  max-width: ${MAX_CONTENT_WIDTH};
   margin: 0 auto;
   padding: 0 1rem;
 

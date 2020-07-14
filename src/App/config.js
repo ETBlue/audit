@@ -1,5 +1,7 @@
 export const PROPOSAL_COUNT_PER_PAGE = 25
 
+export const MAX_CONTENT_WIDTH = '1680px'
+
 export const STATUSES = [
   { key: undefined, color: 'grey', icon: 'clipboard list', name: 'TODO' },
   { key: 'wip', color: 'grey', icon: 'hourglass half', name: 'WIP' },
@@ -135,7 +137,7 @@ export const FACETS = [
   { key: 'tutorial', name: '實務教學', name_en: 'Tutorial' },
   { key: 'taste', name: '方法論體驗', name_en: 'Taste' },
   { key: 'discussion', name: '議題討論', name_en: 'Discussion' },
-  { key: 'facet_misc', name: '其他', name_en: 'Misc' }
+  { key: 'facet_misc', name: '其他面向', name_en: 'Other facets' }
 ]
 
 export const HIGHLIGHTS = [
@@ -143,5 +145,5 @@ export const HIGHLIGHTS = [
   { key: 'localization', name: '台灣、東南亞、東亞', name_en: 'Localization' },
   { key: 'gender', name: '性別均衡', name_en: 'Gender balance' },
   { key: 'area', name: '地域均衡', name_en: 'Area balance' },
-  { key: 'highlight_misc', name: '其他', name_en: 'Misc' }
+  { key: 'highlight_misc', name: '其他加分條件', name_en: 'Other highlights' }
 ]
