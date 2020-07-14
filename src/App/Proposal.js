@@ -2,9 +2,9 @@ import React from 'react'
 import { Header, Divider, Grid, Icon } from 'semantic-ui-react'
 import styled from 'styled-components'
 
-import Meta from './Meta'
-import Speakers from './Speakers'
-import Note from './Note'
+import Meta from './Proposal/Meta'
+import Speakers from './Proposal/Speakers'
+import Note from './Proposal/Note'
 
 const Proposal = ({ proposal }) => {
   return (
@@ -46,15 +46,11 @@ export default Proposal
 
 const StyledContainer = styled.section`
   width: 100%;
-  max-width: 1920px;
+  max-width: 1680px;
   margin: 0 auto;
   padding: 0 1rem;
 
-  .grid > .column:first-child {
-    padding-left: 2rem !important;
-
-    .menu {
-      margin-left: 1rem;
-    }
+  .grid > .column .menu {
+    margin-left: 0;
   }
 `

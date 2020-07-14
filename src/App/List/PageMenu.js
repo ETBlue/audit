@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom'
 import { Container, Menu } from 'semantic-ui-react'
 import queryString from 'query-string'
 
-import { getLink } from 'App/List/helpers'
+import { getLink } from './helpers'
 
 const PageMenu = ({ pages }) => {
   const { pathname, search } = useLocation()

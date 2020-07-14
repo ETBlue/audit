@@ -1,22 +1,23 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { useParams, useLocation, Link } from 'react-router-dom'
-import { Header, Divider, Grid, Item, Icon, Segment } from 'semantic-ui-react'
+import React, { useContext } from 'react'
+import { useParams, useLocation } from 'react-router-dom'
+import { Divider } from 'semantic-ui-react'
 import styled from 'styled-components'
 import queryString from 'query-string'
 import { chunk } from 'lodash'
 
 import { DataContext } from '_api'
-import { useNotes, NotesContext } from '_storage'
+import { NotesContext } from '_storage'
+import { PROPOSAL_COUNT_PER_PAGE } from 'App/config'
 
 import PageMenu from 'App/List/PageMenu'
-import Proposal from 'App/List/Proposal'
+import Proposal from 'App/Proposal'
 
 const Proposals = () => {
   const { status } = useParams()
   const { search } = useLocation()
   const queries = queryString.parse(search)
   const { proposals } = useContext(DataContext)
-  const { notes, getNote } = useContext(NotesContext)
+  const { getNote } = useContext(NotesContext)
   const matchedProposals = proposals.filter(p =>
     isProposalListed({
       proposal: p,
@@ -26,7 +27,7 @@ const Proposals = () => {
     })
   )
 
-  const pages = chunk(matchedProposals, 50)
+  const pages = chunk(matchedProposals, PROPOSAL_COUNT_PER_PAGE)
   const listedProposals = pages[queries.page - 1 || 0]
 
   return (
@@ -59,6 +60,9 @@ const isProposalListed = ({ proposal, note, status, queries }) => {
   if (queries.facet && !note[queries.facet]) return false
 
   if (queries.highlight && !note[queries.highlight]) return false
+
+  if (queries.search && !JSON.stringify(proposal).includes(queries.search))
+    return false
 
   return true
 }

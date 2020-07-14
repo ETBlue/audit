@@ -10,6 +10,7 @@ const TEMPLATE = {
   experience: false,
   research: false,
   resource: false,
+  plan: false,
   tutorial: false,
   taste: false,
   discussion: false,

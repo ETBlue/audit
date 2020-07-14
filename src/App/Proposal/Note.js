@@ -17,7 +17,7 @@ const Note = ({ proposal }) => {
 
   return (
     <>
-      <Menu secondary vertical>
+      <Menu secondary vertical fluid>
         {STATUSES.map(s => (
           <Menu.Item
             key={s.key || ''}

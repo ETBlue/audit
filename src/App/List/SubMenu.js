@@ -4,6 +4,7 @@ import { Menu, Dropdown } from 'semantic-ui-react'
 import queryString from 'query-string'
 
 import { TOPICS, FORMATS, LICENSES, FACETS, HIGHLIGHTS } from 'App/config'
+import { getLink } from './helpers'
 
 const MENUS = [
   { configs: TOPICS, type: 'topic' },
@@ -55,12 +56,4 @@ export default SubMenu
 
 const getActive = ({ queries, type, configs }) => {
   return configs.find(item => item.key === queries[type])
-}
-
-const getLink = ({ queries, name, value, pathname }) => {
-  const newQueries = {
-    ...queries,
-    [name]: value
-  }
-  return `${pathname}?${queryString.stringify(newQueries)}`
 }

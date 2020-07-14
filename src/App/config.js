@@ -1,3 +1,5 @@
+export const PROPOSAL_COUNT_PER_PAGE = 25
+
 export const STATUSES = [
   { key: undefined, color: 'grey', icon: 'clipboard list', name: 'TODO' },
   { key: 'wip', color: 'grey', icon: 'hourglass half', name: 'WIP' },
@@ -129,6 +131,7 @@ export const FACETS = [
   { key: 'experience', name: '專案經驗談', name_en: 'Project experience' },
   { key: 'research', name: '分析與研究', name_en: 'Research' },
   { key: 'resource', name: '資源介紹', name_en: 'Resource' },
+  { key: 'plan', name: '行動計畫', name_en: 'Plan' },
   { key: 'tutorial', name: '實務教學', name_en: 'Tutorial' },
   { key: 'taste', name: '方法論體驗', name_en: 'Taste' },
   { key: 'discussion', name: '議題討論', name_en: 'Discussion' },
