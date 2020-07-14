@@ -1,19 +1,17 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useLocation, useParams, Link } from 'react-router-dom'
 import { Menu, Label } from 'semantic-ui-react'
 import styled from 'styled-components'
 
+import { NotesContext } from '_storage'
 import { DataContext } from '_api'
-import { useNotes, NotesContext } from '_storage'
 import { STATUSES } from 'App/config'
 
 const MainMenu = () => {
   const { status } = useParams()
   const { search } = useLocation()
-  const { getNote } = useNotes()
-  const proposals = useContext(DataContext)
-  const notes = useContext(NotesContext)
-  useEffect(() => {}, [notes])
+  const { proposals } = useContext(DataContext)
+  const { getNote } = useContext(NotesContext)
 
   return (
     <StyledMenu>

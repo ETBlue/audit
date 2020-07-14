@@ -11,7 +11,7 @@ const PageMenu = ({ pages }) => {
 
   return (
     <Container textAlign='center'>
-      <Menu pagination>
+      <Menu pagination borderless>
         {pages.map((p, index) => (
           <Menu.Item
             as={Link}

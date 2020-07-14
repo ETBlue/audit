@@ -8,12 +8,12 @@ import { useNotes, NotesContext } from '_storage'
 import List from 'App/List'
 
 const App = () => {
-  const { proposals } = useProposals()
-  const { notes } = useNotes()
+  const { proposals, refetch } = useProposals()
+  const { notes, getNote, setNote } = useNotes()
 
   return (
-    <DataContext.Provider value={proposals}>
-      <NotesContext.Provider value={notes}>
+    <DataContext.Provider value={{ proposals, refetch }}>
+      <NotesContext.Provider value={{ notes, getNote, setNote }}>
         <Switch>
           <Route path='/proposal/:id'>
             <div>proposal</div>

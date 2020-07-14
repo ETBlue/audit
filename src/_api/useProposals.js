@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react'
 
-import { fetchData } from '_api'
+import { fetchProposals } from '_api'
 
 const useProposals = () => {
   const [proposals, setProposals] = useState([])
 
+  const fetch = async () => {
+    const res = await fetchProposals()
+    setProposals(res)
+  }
+
   useEffect(() => {
-    async function fetch() {
-      const res = await fetchData()
-      setProposals(res)
-    }
     fetch()
   }, [])
 
-  return { proposals }
+  return { proposals, refetch: fetch }
 }
 
 export default useProposals

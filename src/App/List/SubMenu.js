@@ -5,7 +5,7 @@ import queryString from 'query-string'
 
 import { TOPICS, FORMATS, LICENSES, FACETS, HIGHLIGHTS } from 'App/config'
 
-const SUBMENUS = [
+const MENUS = [
   { configs: TOPICS, type: 'topic' },
   { configs: FORMATS, type: 'format' },
   { configs: LICENSES, type: 'license' },
@@ -19,10 +19,11 @@ const SubMenu = () => {
 
   return (
     <Menu secondary widths={5}>
-      {SUBMENUS.map(({ type, configs }) => (
+      {MENUS.map(({ type, configs }) => (
         <Dropdown
           key={type}
           item
+          className={!!queries[type] ? 'active' : ''}
           text={
             getActive({ queries, type, configs })?.name_en || `All ${type}s`
           }
