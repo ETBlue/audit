@@ -12,20 +12,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+code,
+.code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    monospace !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 a:not(.ui):not(.item) {
   transition: all 0.25s ease-out;
   color: #008080 !important;
   opacity: 0.7;
-}
 
-a:not(.ui):not(.item):hover,
-a:not(.ui):not(.item):active {
-  opacity: 1;
+  &:hover,
+  &:active {
+    opacity: 1;
+  }
 }
 
 p {
