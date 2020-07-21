@@ -24,13 +24,19 @@ const MainMenu = () => {
   return (
     <StyledMenu>
       <Menu inverted borderless stackable color='teal'>
-        <Menu.Item>Audit Helper</Menu.Item>
+        <Menu.Item
+          as={Link}
+          to='/settings'
+          active={pathname.includes('/settings')}
+        >
+          Audit Helper
+        </Menu.Item>
         {STATUSES.map(s => (
           <Menu.Item
             key={s.name}
             as={Link}
             to={`/${s.key || ''}${search}`}
-            active={s.key === status}
+            active={!pathname.includes('/settings') && s.key === status}
           >
             {s.name}
             <Label>

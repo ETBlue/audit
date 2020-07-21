@@ -55,5 +55,10 @@ export const useNotes = () => {
     setNotes({ ...notes })
   }
 
-  return { notes, getNote, setNote }
+  const saveNotes = string => {
+    window.localStorage.setItem(SITE_ID, string)
+    setNotes(JSON.parse(string))
+  }
+
+  return { notes, getNote, setNote, saveNotes }
 }
