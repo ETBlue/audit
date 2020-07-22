@@ -1,4 +1,4 @@
-import { remove, last } from 'lodash'
+import { last } from 'lodash'
 
 const getTopic = string => {
   if (string.includes('「沒有人」的島')) return 'nobody'
@@ -54,6 +54,7 @@ export const getProposal = item => {
   } = proposal
   return {
     id: item._id,
+    version: item.versions_count,
     related_url,
     speakers,
     summary,
