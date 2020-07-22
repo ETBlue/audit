@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
 
 import { getNotes, TEMPLATE, SITE_ID } from './helpers'
+import { STATUSES } from 'App/config'
 
 // window.localStorage.removeItem(SITE_ID)
 
@@ -10,10 +11,19 @@ export const useNotes = () => {
   const [notes, setNotes] = useState(getNotes())
 
   const getNote = useCallback(
-    id =>
-      notes[id] || {
-        ...TEMPLATE
-      },
+    id => {
+      const note = notes[id]
+
+      if (!note)
+        return {
+          ...TEMPLATE
+        }
+
+      if (!STATUSES.some(status => status.key === note.status))
+        note.status = undefined
+
+      return note
+    },
     [notes]
   )
 
