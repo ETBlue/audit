@@ -1,5 +1,13 @@
 import React, { useContext, useState } from 'react'
-import { Button, Label, Input, Header, Icon } from 'semantic-ui-react'
+import {
+  Message,
+  Button,
+  Label,
+  Input,
+  Header,
+  Segment,
+  Divider
+} from 'semantic-ui-react'
 
 import { NotesContext } from '_storage'
 
@@ -10,15 +18,15 @@ const Device = () => {
   const jsonString = JSON.stringify(notes)
 
   const [input, setInput] = useState('')
-  const handleChange = (e, { value }) => {
-    setInput(value)
+  const handleChange = e => {
+    setInput(e.currentTarget.value)
   }
   const handleSave = () => {
     saveNotes(input)
   }
 
   return (
-    <>
+    <Segment padded='very' basic>
       <Header as='h3' color='teal'>
         Transfer your notes to another device
       </Header>
@@ -35,12 +43,18 @@ const Device = () => {
         Step 2: Send your clipboard content to the target device
       </Header>
       <Header as='h4'>
-        Step 3: <Label horizontal>on the target device</Label> open this web
-        page
+        Step 3:{' '}
+        <Label horizontal color='black'>
+          on the target device
+        </Label>{' '}
+        open this web page
       </Header>
       <Header as='h4'>
-        Step 4: <Label horizontal>on the target device</Label> paste your notes
-        here
+        Step 4:{' '}
+        <Label horizontal color='black'>
+          on the target device
+        </Label>{' '}
+        paste your notes here and click on the button
       </Header>
       <Input action>
         <input
@@ -51,7 +65,7 @@ const Device = () => {
         />
         <Button icon='save' onClick={handleSave} />
       </Input>
-    </>
+    </Segment>
   )
 }
 

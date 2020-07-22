@@ -42,7 +42,7 @@ const Settings = () => {
 export default Settings
 
 const MENU_ITEMS = [
-  { key: 'backup', name: 'Backup your notes' },
+  { key: 'backup', name: 'Backup and recover' },
   { key: 'device', name: 'Switch between devices' },
-  { key: 'convert', name: 'Convert format' }
+  { key: 'convert', name: 'Convert to csv' }
 ]
