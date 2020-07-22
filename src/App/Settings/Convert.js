@@ -16,7 +16,9 @@ const Convert = () => {
   const { sheet, fetchSheet, handleFetchDone } = useContext(SheetContext)
 
   useEffect(() => {
-    fetchSheet(handleFetchDone)
+    if (sheet.length === 0) {
+      fetchSheet(handleFetchDone)
+    }
   }, [])
 
   const sharedNotes = sheet.map(row => {
