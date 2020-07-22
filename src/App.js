@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import { DataContext } from '_api'
-import useProposals from '_api/useProposals'
+import { DataContext } from '_proposal'
+import useProposals from '_proposal/useProposals'
 import { useNotes, NotesContext } from '_storage'
 import { useSheet, SheetContext } from '_gsheet'
 

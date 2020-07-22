@@ -5,7 +5,7 @@ import queryString from 'query-string'
 import styled from 'styled-components'
 
 import { NotesContext } from '_storage'
-import { DataContext } from '_api'
+import { DataContext } from '_proposal'
 import { STATUSES, MAX_CONTENT_WIDTH } from 'App/config'
 import { getLink } from './helpers'
 

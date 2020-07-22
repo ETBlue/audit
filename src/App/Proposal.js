@@ -7,6 +7,7 @@ import { MAX_CONTENT_WIDTH } from 'App/config'
 import Meta from './Proposal/Meta'
 import Speakers from './Proposal/Speakers'
 import Note from './Proposal/Note'
+import Comments from './Proposal/Comments'
 
 const Proposal = ({ proposal }) => {
   return (
@@ -35,6 +36,8 @@ const Proposal = ({ proposal }) => {
           <p>{proposal.summary_en}</p>
           <Divider />
           <Speakers speakers={proposal.speakers} />
+          <Divider />
+          <Comments id={proposal.id} />
         </Grid.Column>
         <Grid.Column width={7}>
           <Note proposal={proposal} />
@@ -54,5 +57,25 @@ const StyledContainer = styled.section`
 
   .grid > .column .menu {
     margin-left: 0;
+  }
+
+  .ui.comments .comment {
+    border-top: 1px dashed rgba(34, 36, 38, 0.15);
+
+    &:first-child {
+      border-top: none;
+    }
+
+    .title {
+      font-size: 0.8rem;
+      opacity: 0.4;
+      float: right;
+    }
+
+    .emoji {
+      height: 1.5em;
+      margin: -0.25em 0;
+      display: inline-block;
+    }
   }
 `

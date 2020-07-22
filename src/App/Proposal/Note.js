@@ -33,7 +33,7 @@ const Note = ({ proposal }) => {
     <>
       {isReviewed && !isUpToDate && (
         <Message icon warning>
-          <Icon name='exclamation triangle yellow' />
+          <Icon name='exclamation triangle' color='yellow' />
           <Message.Content>Your review might be outdated</Message.Content>
         </Message>
       )}

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import queryString from 'query-string'
 import { chunk } from 'lodash'
 
-import { DataContext } from '_api'
+import { DataContext } from '_proposal'
 import { NotesContext } from '_storage'
 import { PROPOSAL_COUNT_PER_PAGE } from 'App/config'
 

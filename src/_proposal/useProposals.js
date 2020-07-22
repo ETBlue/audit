@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { fetchProposals } from '_api'
+import { fetchProposals } from '_proposal'
 
 const useProposals = () => {
   const [proposals, setProposals] = useState([])

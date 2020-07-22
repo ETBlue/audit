@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react'
 import { Label, Input, Header, Segment } from 'semantic-ui-react'
 
-import { DataContext } from '_api'
+import { DataContext } from '_proposal'
 import { NotesContext } from '_storage'
 import { SheetContext } from '_gsheet'
 import { getCsv } from '_gsheet/helpers'
