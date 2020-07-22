@@ -1,9 +1,10 @@
-import React, { useEffect, useContext, useState } from 'react'
-import { Label, Grid, Input, Header, Segment } from 'semantic-ui-react'
+import React, { useEffect, useContext } from 'react'
+import { Label, Input, Header, Segment } from 'semantic-ui-react'
 
 import { DataContext } from '_api'
 import { NotesContext } from '_storage'
-import { fetchSheet, getCsv } from '_gsheet'
+import { SheetContext } from '_gsheet'
+import { getCsv } from '_gsheet/helpers'
 
 import { FACETS, HIGHLIGHTS } from 'App/config'
 
@@ -12,18 +13,8 @@ import CopyButton from './CopyButton'
 const Convert = () => {
   const { proposals } = useContext(DataContext)
   const { notes } = useContext(NotesContext)
+  const { sheet, fetchSheet, handleFetchDone } = useContext(SheetContext)
 
-  const [sheet, setSheet] = useState([])
-  const handleFetchDone = result => {
-    setSheet(
-      result.map(item => {
-        return {
-          title: item[' Title'],
-          title_en: item[' Title En']
-        }
-      })
-    )
-  }
   useEffect(() => {
     fetchSheet(handleFetchDone)
   }, [])

@@ -1,28 +1,21 @@
-import axios from 'axios'
-import Papa from 'papaparse'
+import React, { useState } from 'react'
 
-export const SOURCE =
-  'https://docs.google.com/spreadsheets/d/e/2PACX-1vQOgMi9mafWNiVwaf279gX25Hh69ivGjwno0wQyKVAY_5YlWtyTH5hm0yMOS4j43ybo3wbZtrUe2i2I/pub?gid=928708383&single=true&output=csv'
+import { fetchSheet } from './helpers'
 
-export const fetchSheet = async callback => {
-  const response = await axios.get(SOURCE)
+export const SheetContext = React.createContext()
 
-  Papa.parse(response.data, {
-    header: true,
-    complete: result => {
-      if (result.data.some(item => item[` Title`])) {
-        callback(result.data)
-      } else {
-        window.open(SOURCE)
-        fetchSheet(callback)
-        console.error('error: importJSON still working. retrying...')
-      }
-    },
-    error: error => {
-      console.error(error)
-    }
-  })
+export const useSheet = () => {
+  const [sheet, setSheet] = useState([])
+  const handleFetchDone = result => {
+    setSheet(
+      result.map(item => {
+        return {
+          title: item[' Title'],
+          title_en: item[' Title En']
+        }
+      })
+    )
+  }
+
+  return { sheet, fetchSheet, handleFetchDone }
 }
-
-export const getCsv = sharedNotes =>
-  Papa.unparse(sharedNotes, { header: false })

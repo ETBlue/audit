@@ -135,7 +135,7 @@ export const FACETS = [
   { key: 'resource', name: '資源介紹', name_en: 'Resource' },
   { key: 'plan', name: '行動計畫', name_en: 'Plan' },
   { key: 'tutorial', name: '實務教學', name_en: 'Tutorial' },
-  { key: 'taste', name: '方法論體驗', name_en: 'Taste' },
+  { key: 'taste', name: '方法體驗或角色扮演', name_en: 'Taste' },
   { key: 'discussion', name: '議題討論', name_en: 'Discussion' },
   { key: 'facet_misc', name: '其他面向', name_en: 'Other facets' }
 ]

@@ -80,6 +80,7 @@ const Backup = () => {
         Warning: You are going to overite your notes. This action can't be
         undone.
       </Message>
+      <Divider hidden />
     </>
   )
 }
