@@ -67,8 +67,6 @@ const StyledContainer = styled.section`
     }
 
     .title {
-      font-size: 0.8rem;
-      opacity: 0.4;
       float: right;
     }
 
@@ -77,5 +75,13 @@ const StyledContainer = styled.section`
       margin: -0.25em 0;
       display: inline-block;
     }
+
+    .js-lazyYT.lazyYT-container {
+      width: 100% !important;
+    }
+  }
+
+  .message {
+    text-align: center;
   }
 `
