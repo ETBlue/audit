@@ -66,7 +66,7 @@ const StyledContainer = styled.section`
       border-top: none;
     }
 
-    .title {
+    .info.title {
       float: right;
     }
 
@@ -81,7 +81,7 @@ const StyledContainer = styled.section`
     }
   }
 
-  .message {
+  .info.message {
     text-align: center;
   }
 `
