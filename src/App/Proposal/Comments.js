@@ -19,7 +19,9 @@ const Comments = ({ id }) => {
     <Comment.Group>
       {comments.map(comment => (
         <Comment key={comment.content}>
-          <Comment.Author as='span'>{comment.author}</Comment.Author>
+          <Comment.Author as='a' href={comment.profile} target='_blank'>
+            {comment.author}
+          </Comment.Author>
           <Comment.Metadata as='span'>
             {moment(comment.timestamp).format('YYYY-MM-DD HH:mm:ss')}
           </Comment.Metadata>
