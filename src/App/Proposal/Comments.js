@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
-import { Comment, Label } from 'semantic-ui-react'
+import { Comment } from 'semantic-ui-react'
 
 import { fetchComments } from '_comment'
 
@@ -10,7 +10,7 @@ const Comments = ({ id }) => {
     if (!comments) {
       fetchComments(id, setComments)
     }
-  }, [])
+  }, [comments])
 
   if (!comments || comments.length === 0)
     return <p className='info message'>No comments</p>

@@ -43,7 +43,11 @@ const Backup = () => {
         </Input>
         <Header as='h4'>Step 2: Paste to a new HackMD</Header>
         <p>
-          <a href='https://hackmd.io/new' target='_blank'>
+          <a
+            href='https://hackmd.io/new'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             <Icon name='external alternate' />
             New HackMD
           </a>

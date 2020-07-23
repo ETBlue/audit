@@ -91,7 +91,7 @@ const Note = ({ proposal }) => {
             <Form.TextArea
               name='memo'
               value={note.memo || ''}
-              placeholder={`Auditor\'s memo...`}
+              placeholder={`Auditor's memo...`}
               onChange={handleChange}
             />
           </Form>

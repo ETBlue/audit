@@ -33,14 +33,18 @@ const Proposal = ({ proposal }) => {
                 <Icon name='right chevron' />
               </Button>
             )}
-            <a href={proposal.url} target='_blank'>
+            <a href={proposal.url} target='_blank' rel='noopener noreferrer'>
               {proposal.title}
             </a>
             <Header.Subheader>{proposal.title_en}</Header.Subheader>
           </Header>
           {proposal.related_url && (
             <p>
-              <a href={proposal.related_url} target='_blank'>
+              <a
+                href={proposal.related_url}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 Related URL
                 {` `}
                 <Icon name='linkify' size='small' />

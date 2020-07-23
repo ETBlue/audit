@@ -1,13 +1,5 @@
 import React, { useContext, useState } from 'react'
-import {
-  Message,
-  Button,
-  Label,
-  Input,
-  Header,
-  Segment,
-  Divider
-} from 'semantic-ui-react'
+import { Button, Label, Input, Header, Segment } from 'semantic-ui-react'
 
 import { NotesContext } from '_storage'
 

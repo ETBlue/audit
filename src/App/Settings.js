@@ -13,7 +13,7 @@ const Settings = () => {
   const { action } = useParams()
 
   if (!MENU_ITEMS.some(item => item.key === action)) {
-    return <Redirect to={'/settings/' + 'backup'} />
+    return <Redirect to={'/settings/backup'} />
   }
 
   return (

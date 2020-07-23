@@ -42,7 +42,7 @@ const Convert = () => {
     if (sheet.length === 0) {
       fetchSheet(handleSuccess, handleError)
     }
-  }, [])
+  }, [sheet.length])
 
   const sharedNotes = sheet.map(row => {
     const proposal = proposals.find(
