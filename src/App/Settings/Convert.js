@@ -24,14 +24,18 @@ const Convert = () => {
   const { sheet, fetchSheet, handleFetchDone } = useContext(SheetContext)
 
   const [fetchError, setFetchError] = useState(false)
+  const [buttonState, setButtonState] = useState('')
   const handleSuccess = result => {
+    setButtonState('')
     setFetchError(false)
     handleFetchDone(result)
   }
   const handleError = () => {
+    setButtonState('')
     setFetchError(true)
   }
   const handleRetry = () => {
+    setButtonState('loading')
     fetchSheet(handleSuccess, handleError)
   }
   useEffect(() => {
@@ -73,7 +77,7 @@ const Convert = () => {
       {fetchError && (
         <Message warning>
           <p>Error: importJSON still working.</p>
-          <Button color='yellow' onClick={handleRetry}>
+          <Button color='yellow' onClick={handleRetry} className={buttonState}>
             <Icon name='refresh' />
             retry
           </Button>
