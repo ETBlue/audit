@@ -80,7 +80,7 @@ const MainMenu = () => {
 
 export default MainMenu
 
-const StyledMenu = styled(({ className, children }) => (
+export const StyledMenu = styled(({ className, children }) => (
   <Segment inverted basic color='teal' className={className}>
     {children}
   </Segment>

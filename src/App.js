@@ -8,6 +8,7 @@ import { useSheet, SheetContext } from '_gsheet'
 
 import List from 'App/List'
 import Settings from 'App/Settings'
+import Instance from 'App/Instance'
 
 const App = () => {
   const { proposals, refetch } = useProposals()
@@ -23,7 +24,7 @@ const App = () => {
               <Settings />
             </Route>
             <Route path='/proposal/:id'>
-              <div>proposal</div>
+              <Instance />
             </Route>
             <Route path='/:status?'>
               <List />

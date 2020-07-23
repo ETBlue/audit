@@ -1,5 +1,6 @@
 import React from 'react'
-import { Header, Divider, Grid, Icon } from 'semantic-ui-react'
+import { Link, useParams, useLocation } from 'react-router-dom'
+import { Header, Divider, Grid, Icon, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 import { MAX_CONTENT_WIDTH } from 'App/config'
@@ -10,6 +11,9 @@ import Note from './Proposal/Note'
 import Comments from './Proposal/Comments'
 
 const Proposal = ({ proposal }) => {
+  const { id } = useParams()
+  const { search } = useLocation()
+
   return (
     <StyledContainer>
       <Grid stackable columns={3} key={proposal.id}>
@@ -18,6 +22,17 @@ const Proposal = ({ proposal }) => {
         </Grid.Column>
         <Grid.Column width={6}>
           <Header as='h3'>
+            {!id && (
+              <Button
+                color='teal'
+                basic
+                as={Link}
+                to={`/proposal/${proposal.id}${search}`}
+                floated='right'
+              >
+                <Icon name='right chevron' />
+              </Button>
+            )}
             <a href={proposal.url} target='_blank'>
               {proposal.title}
             </a>
@@ -57,6 +72,14 @@ const StyledContainer = styled.section`
 
   .grid > .column .menu {
     margin-left: 0;
+  }
+
+  .ui.header .button {
+    padding: 0.785714em;
+
+    .icon {
+      margin: 0 !important;
+    }
   }
 
   .ui.comments .comment {
