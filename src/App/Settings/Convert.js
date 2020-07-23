@@ -1,5 +1,13 @@
-import React, { useEffect, useContext } from 'react'
-import { Label, Input, Header, Segment } from 'semantic-ui-react'
+import React, { useState, useEffect, useContext } from 'react'
+import {
+  Icon,
+  Button,
+  Label,
+  Input,
+  Header,
+  Segment,
+  Message
+} from 'semantic-ui-react'
 
 import { DataContext } from '_proposal'
 import { NotesContext } from '_storage'
@@ -15,9 +23,20 @@ const Convert = () => {
   const { notes } = useContext(NotesContext)
   const { sheet, fetchSheet, handleFetchDone } = useContext(SheetContext)
 
+  const [fetchError, setFetchError] = useState(true)
+  const handleSuccess = result => {
+    setFetchError(false)
+    handleFetchDone(result)
+  }
+  const handleError = () => {
+    setFetchError(true)
+  }
+  const handleRetry = () => {
+    fetchSheet(handleFetchDone, handleError)
+  }
   useEffect(() => {
     if (sheet.length === 0) {
-      fetchSheet(handleFetchDone)
+      fetchSheet(handleSuccess, handleError)
     }
   }, [])
 
@@ -51,6 +70,15 @@ const Convert = () => {
         />
         <CopyButton string={csvNotes} />
       </Input>
+      {fetchError && (
+        <Message warning>
+          <p>Error: importJSON still working.</p>
+          <Button color='yellow' onClick={handleRetry}>
+            <Icon name='refresh' />
+            retry
+          </Button>
+        </Message>
+      )}
       <Header as='h4'>
         Step 2: Open a blank gsheet and paste the csv string into it
       </Header>
