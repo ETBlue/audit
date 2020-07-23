@@ -35,7 +35,7 @@ const getLicense = proposal => {
 }
 
 const getKeywords = string => {
-  for (const delimiter of [',', '，', '、', '/']) {
+  for (const delimiter of [',', '，', '、', '/', '；']) {
     if (string.includes(delimiter))
       return string.split(delimiter).map(s => s.trim())
   }

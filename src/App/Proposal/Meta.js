@@ -1,12 +1,12 @@
 import React from 'react'
 import { Label, List, Icon } from 'semantic-ui-react'
 
-import { TOPICS, FORMATS, LICENSES } from 'App/config'
+import { getTopic, getFormat, getLicense } from './helpers'
 
 const Meta = ({ proposal }) => {
-  const topic = TOPICS.find(item => item.key === proposal.topic)
-  const format = FORMATS.find(item => item.key === proposal.format)
-  const license = LICENSES.find(item => item.key === proposal.license)
+  const topic = getTopic(proposal.topic)
+  const format = getFormat(proposal.format)
+  const license = getLicense(proposal.license)
 
   return (
     <>

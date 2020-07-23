@@ -14,7 +14,7 @@ import { NotesContext } from '_storage'
 import { SheetContext } from '_gsheet'
 import { getCsv } from '_gsheet/helpers'
 
-import { FACETS, HIGHLIGHTS } from 'App/config'
+import { getSharedNote } from './helpers'
 
 import CopyButton from './CopyButton'
 
@@ -23,7 +23,7 @@ const Convert = () => {
   const { notes } = useContext(NotesContext)
   const { sheet, fetchSheet, handleFetchDone } = useContext(SheetContext)
 
-  const [fetchError, setFetchError] = useState(true)
+  const [fetchError, setFetchError] = useState(false)
   const handleSuccess = result => {
     setFetchError(false)
     handleFetchDone(result)
@@ -111,35 +111,3 @@ const Convert = () => {
 }
 
 export default Convert
-
-const getScore = status => {
-  if (status === 'yes') return 3
-  if (status === 'no') return 1
-  if (status === 'unsure') return 2
-  return ''
-}
-
-const getFacets = note => {
-  const activeFacets = FACETS.filter(item => note[item.key]).map(
-    item => item.name
-  )
-  return activeFacets.length > 0 ? `面向：${activeFacets.join('、')}` : null
-}
-
-const getHighLights = note => {
-  const activeHighlights = HIGHLIGHTS.filter(item => note[item.key]).map(
-    item => item.name
-  )
-  return activeHighlights.length > 0
-    ? `加分：${activeHighlights.join('、')}`
-    : null
-}
-
-const getSharedNote = note => {
-  return {
-    score: getScore(note.status),
-    notes: [note.memo || '', getFacets(note), getHighLights(note)]
-      .filter(item => !!item)
-      .join('；')
-  }
-}

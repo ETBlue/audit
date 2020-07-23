@@ -22,5 +22,4 @@ export const fetchSheet = async (done, error) => {
   })
 }
 
-export const getCsv = sharedNotes =>
-  Papa.unparse(sharedNotes, { header: false })
+export const getCsv = sharedNotes => Papa.unparse(sharedNotes)

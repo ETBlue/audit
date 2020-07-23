@@ -5,6 +5,7 @@ import { Container, Menu } from 'semantic-ui-react'
 import MainMenu from 'App/List/MainMenu'
 import Backup from 'App/Settings/Backup'
 import Device from 'App/Settings/Device'
+import Share from 'App/Settings/Share'
 import Convert from 'App/Settings/Convert'
 
 const Settings = () => {
@@ -19,7 +20,7 @@ const Settings = () => {
     <>
       <MainMenu />
       <Container textAlign='center'>
-        <Menu secondary widths={3}>
+        <Menu secondary widths={4}>
           {MENU_ITEMS.map(item => (
             <Menu.Item
               key={item.key}
@@ -33,7 +34,8 @@ const Settings = () => {
         </Menu>
         {action === 'backup' && <Backup />}
         {action === 'device' && <Device />}
-        {action === 'convert' && <Convert />}
+        {action === 'convert' && <Share />}
+        {action === 'convert_v0' && <Convert />}
       </Container>
     </>
   )
@@ -44,5 +46,6 @@ export default Settings
 const MENU_ITEMS = [
   { key: 'backup', name: 'Backup and recover' },
   { key: 'device', name: 'Switch between devices' },
-  { key: 'convert', name: 'Convert to csv' }
+  { key: 'convert', name: 'Share notes' },
+  { key: 'convert_v0', name: 'Convert to csv (obsolete)' }
 ]
