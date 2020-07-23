@@ -32,7 +32,7 @@ const Convert = () => {
     setFetchError(true)
   }
   const handleRetry = () => {
-    fetchSheet(handleFetchDone, handleError)
+    fetchSheet(handleSuccess, handleError)
   }
   useEffect(() => {
     if (sheet.length === 0) {
