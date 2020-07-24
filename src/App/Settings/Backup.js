@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import moment from 'moment'
 import {
   Label,
   Button,
@@ -17,6 +18,10 @@ import CopyButton from './CopyButton'
 const Backup = () => {
   const { notes, saveNotes } = useContext(NotesContext)
   const jsonString = JSON.stringify(notes)
+  const mdString = `# Audit Helper backup ${moment().format('YYYY-MM-DD')}
+
+  ${jsonString}
+  `
 
   const [input, setInput] = useState('')
   const handleChange = e => {
@@ -37,9 +42,9 @@ const Backup = () => {
           <input
             style={{ background: '#fafafa' }}
             className='code'
-            value={jsonString}
+            value={mdString}
           />
-          <CopyButton string={jsonString} />
+          <CopyButton string={mdString} />
         </Input>
         <Header as='h4'>Step 2: Paste to a new HackMD</Header>
         <p>

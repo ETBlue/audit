@@ -61,7 +61,7 @@ const Convert = () => {
   return (
     <Segment padded='very' basic>
       <Header as='h3' color='teal'>
-        Share your notes to the team sheet
+        Share your notes to the team sheet (obsolete)
       </Header>
       <Header as='h4'>
         Step 1: Copy the following csv string to the clipboard

@@ -28,5 +28,7 @@ export const getNotes = () => {
     )
     notes = window.localStorage.getItem(SITE_ID)
   }
-  return JSON.parse(notes)
+  const startPosition = notes.indexOf('{')
+  const trimmedNotes = notes.slice(startPosition)
+  return JSON.parse(trimmedNotes)
 }

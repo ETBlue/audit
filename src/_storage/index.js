@@ -3,8 +3,6 @@ import React, { useCallback, useState } from 'react'
 import { getNotes, TEMPLATE, SITE_ID } from './helpers'
 import { STATUSES } from 'App/config'
 
-// window.localStorage.removeItem(SITE_ID)
-
 export const NotesContext = React.createContext()
 
 export const useNotes = () => {
@@ -37,8 +35,10 @@ export const useNotes = () => {
   }
 
   const saveNotes = string => {
+    const startPosition = string.indexOf('{')
+    const trimmedString = string.slice(startPosition)
     window.localStorage.setItem(SITE_ID, string)
-    setNotes(JSON.parse(string))
+    setNotes(JSON.parse(trimmedString))
   }
 
   return { notes, getNote, setNote, saveNotes }
