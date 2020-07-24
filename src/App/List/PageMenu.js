@@ -23,7 +23,8 @@ const PageMenu = ({ pages }) => {
             })}
             key={index + 1}
             active={
-              index + 1 === queries.page || (index === 0 && !queries.page)
+              index + 1 === parseInt(queries.page) ||
+              (index === 0 && !queries.page)
             }
           >
             {index + 1}
