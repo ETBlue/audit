@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Menu, Grid, Icon } from 'semantic-ui-react'
+import { Message, Menu, Grid, Icon } from 'semantic-ui-react'
 
 import { NotesContext } from '_storage'
 import { STATUSES } from 'App/config'
@@ -21,6 +21,8 @@ const SimpleProposal = ({ proposal }) => {
   const note = getNote(proposal.id)
 
   const statusInfo = STATUSES.find(s => s.key === note.status)
+  const isUpToDate = proposal.version === note.version
+  const isReviewed = Object.keys(note).some(key => !!note[key])
 
   return (
     <StyledContainer>
@@ -32,6 +34,12 @@ const SimpleProposal = ({ proposal }) => {
           <Summary {...summaryProps} />
         </Grid.Column>
         <Grid.Column width={3}>
+          {isReviewed && !isUpToDate && (
+            <Message icon warning>
+              <Icon name='exclamation triangle' color='yellow' />
+              <Message.Content>Your review might be outdated</Message.Content>
+            </Message>
+          )}
           <Menu secondary vertical fluid>
             <Menu.Item color={statusInfo.color} active>
               <Icon name={statusInfo.icon} />
