@@ -13,7 +13,7 @@ const Comments = ({ id }) => {
   }, [comments])
 
   if (!comments || comments.length === 0)
-    return <p className='center aligned info message'>No comments</p>
+    return <p className='center aligned info message'>No comment</p>
 
   const sortedComments = comments.sort((a, b) => {
     if (a.timestamp < b.timestamp) return -1
