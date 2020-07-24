@@ -1,21 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
-import { Icon, Divider, Comment } from 'semantic-ui-react'
+import { Button, Icon, Divider, Comment } from 'semantic-ui-react'
 
 import { fetchComments } from '_comment'
 
 const Comments = ({ id }) => {
   const [comments, setComments] = useState(null)
   const [url, setUrl] = useState(null)
+  const [loading, setLoading] = useState(false)
   const handleFetchSuccess = data => {
+    setLoading(false)
     setUrl(data.url)
     setComments(data.comments)
   }
+  const handleRefresh = () => {
+    setLoading(true)
+    fetchComments(id, handleFetchSuccess)
+  }
+
   useEffect(() => {
     if (!comments) {
-      fetchComments(id, handleFetchSuccess)
+      handleRefresh()
     }
   }, [comments])
+
+  const actionProps = { url, handleRefresh, loading }
 
   if (!comments) {
     return <p className='center aligned info message'>Loading comments...</p>
@@ -25,7 +34,7 @@ const Comments = ({ id }) => {
     return (
       <>
         <p className='center aligned info message'>No comment</p>
-        <Join url={url} />
+        <Join {...actionProps} />
       </>
     )
 
@@ -67,21 +76,31 @@ const Comments = ({ id }) => {
           </Comment>
         ))}
       </Comment.Group>
-      <Join url={url} />
+      <Join {...actionProps} />
     </>
   )
 }
 
 export default Comments
 
-const Join = ({ url }) => (
+const Join = ({ url, handleRefresh, loading }) => (
   <>
     <Divider />
-    <p className='center aligned'>
+    <p className='action'>
       <a href={url} target='_blank' rel='noopener noreferrer'>
-        <Icon name='external link' />
+        <Icon name='external' />
         Join discussions
       </a>
+      <Button
+        floated='right'
+        icon
+        basic
+        className='borderless'
+        loading={loading}
+        onClick={handleRefresh}
+      >
+        <Icon name='refresh' />
+      </Button>
     </p>
   </>
 )
