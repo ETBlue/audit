@@ -13,16 +13,32 @@ const Comments = ({ id }) => {
   }, [comments])
 
   if (!comments || comments.length === 0)
-    return <p className='info message'>No comments</p>
+    return <p className='center aligned info message'>No comments</p>
+
+  const sortedComments = comments.sort((a, b) => {
+    if (a.timestamp < b.timestamp) return -1
+    if (a.timestamp > b.timestamp) return 1
+    return 0
+  })
 
   return (
     <Comment.Group>
-      {comments.map(comment => (
+      {sortedComments.map(comment => (
         <Comment key={comment.content}>
-          <Comment.Author as='a' href={comment.profile} target='_blank'>
+          <Comment.Author
+            as='a'
+            href={comment.profile}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             {comment.author}
           </Comment.Author>
-          <Comment.Metadata as='span'>
+          <Comment.Metadata
+            as='a'
+            href={`https://discuss.summit2020.g0v.tw/post/${comment.pid}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             {moment(comment.timestamp).format('YYYY-MM-DD HH:mm:ss')}
           </Comment.Metadata>
           {comment.groups?.map(group => (

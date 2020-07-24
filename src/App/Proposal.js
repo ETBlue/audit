@@ -57,6 +57,17 @@ const Proposal = ({ proposal }) => {
           <Speakers speakers={proposal.speakers} />
           <Divider />
           <Comments id={proposal.id} />
+          <Divider />
+          <p className='center aligned'>
+            <a
+              href={`https://discuss.summit2020.g0v.tw/topic/${proposal.tid}`}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <Icon name='external link' />
+              Join discussions
+            </a>
+          </p>
         </Grid.Column>
         <Grid.Column width={7}>
           <Note proposal={proposal} />
@@ -106,9 +117,5 @@ const StyledContainer = styled.section`
     .js-lazyYT.lazyYT-container {
       width: 100% !important;
     }
-  }
-
-  .info.message {
-    text-align: center;
   }
 `

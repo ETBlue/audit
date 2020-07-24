@@ -8,7 +8,13 @@ const Speakers = ({ speakers }) => (
         <Item.Image rounded size='tiny' src={s.avatar_url} />
         <Item.Content>
           {s.info_url ? (
-            <Item.Header size='tiny' as='a' href={s.info_url} target='_blank'>
+            <Item.Header
+              size='tiny'
+              as='a'
+              href={s.info_url}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {s.display_name}
               {` `}
               <Icon name='linkify' size='small' />

@@ -33,7 +33,9 @@ const Proposals = () => {
   return (
     <>
       <PageMenu pages={pages} />
-      <Info>{matchedProposals.length} proposals found</Info>
+      <p className='center aligned info' style={{ marginTop: '0.5rem' }}>
+        {matchedProposals.length} proposals found
+      </p>
       {listedProposals?.map(p => (
         <React.Fragment key={p.id}>
           <Divider section />
@@ -66,10 +68,3 @@ const isProposalListed = ({ proposal, note, status, queries }) => {
 
   return true
 }
-
-const Info = styled.p`
-  text-align: center;
-  margin: 0.5rem 0;
-  font-size: 0.85rem;
-  opacity: 0.7;
-`
