@@ -50,7 +50,7 @@ const Comments = ({ id }) => {
             </Comment.Author>
             <Comment.Metadata
               as='a'
-              href={`https://discuss.summit2020.g0v.tw/post/${comment.pid}`}
+              href={comment.url}
               target='_blank'
               rel='noopener noreferrer'
             >

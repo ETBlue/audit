@@ -12,6 +12,7 @@ export const fetchComments = async (id, callback) => {
 
 const getComment = post => {
   return {
+    url: `https://discuss.summit2020.g0v.tw/post/${post.pid}`,
     author: post.user.username,
     profile: `https://discuss.summit2020.g0v.tw/uid/${post.user.uid}`,
     timestamp: post.timestamp,
