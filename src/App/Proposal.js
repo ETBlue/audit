@@ -14,6 +14,12 @@ const Proposal = ({ proposal }) => {
   const { id } = useParams()
   const { search } = useLocation()
 
+  const summaryProps = {
+    proposal,
+    id,
+    search
+  }
+
   return (
     <StyledContainer>
       <Grid stackable columns={3} key={proposal.id}>
@@ -21,38 +27,7 @@ const Proposal = ({ proposal }) => {
           <Meta proposal={proposal} />
         </Grid.Column>
         <Grid.Column width={6}>
-          <Header as='h3'>
-            {!id && (
-              <Button
-                color='teal'
-                basic
-                as={Link}
-                to={`/proposal/${proposal.id}${search}`}
-                floated='right'
-              >
-                <Icon name='right chevron' />
-              </Button>
-            )}
-            <a href={proposal.url} target='_blank' rel='noopener noreferrer'>
-              {proposal.title}
-            </a>
-            <Header.Subheader>{proposal.title_en}</Header.Subheader>
-          </Header>
-          {proposal.related_url && (
-            <p>
-              <a
-                href={proposal.related_url}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                Related URL
-                {` `}
-                <Icon name='linkify' size='small' />
-              </a>
-            </p>
-          )}
-          <p>{proposal.summary}</p>
-          <p>{proposal.summary_en}</p>
+          <Summary {...summaryProps} />
           <Divider />
           <Speakers speakers={proposal.speakers} />
           <Divider />
@@ -68,7 +43,45 @@ const Proposal = ({ proposal }) => {
 
 export default Proposal
 
-const StyledContainer = styled.section`
+export const Summary = ({ proposal, id, search }) => (
+  <>
+    <Header as='h3'>
+      {!id && (
+        <Button
+          basic
+          icon
+          className='borderless'
+          as={Link}
+          to={`/proposal/${proposal.id}${search}`}
+          floated='right'
+        >
+          <Icon name='right chevron' />
+        </Button>
+      )}
+      <a href={proposal.url} target='_blank' rel='noopener noreferrer'>
+        {proposal.title}
+      </a>
+      <Header.Subheader>{proposal.title_en}</Header.Subheader>
+    </Header>
+    {proposal.related_url && (
+      <p>
+        <a
+          href={proposal.related_url}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          Related URL
+          {` `}
+          <Icon name='linkify' size='small' />
+        </a>
+      </p>
+    )}
+    <p>{proposal.summary}</p>
+    <p>{proposal.summary_en}</p>
+  </>
+)
+
+export const StyledContainer = styled.section`
   width: 100%;
   max-width: ${MAX_CONTENT_WIDTH};
   margin: 0 auto;
@@ -79,11 +92,13 @@ const StyledContainer = styled.section`
   }
 
   .ui.header .button {
+    font-size: 1rem;
+    margin-top: -0.4em;
     padding: 0.785714em;
+  }
 
-    .icon {
-      margin: 0 !important;
-    }
+  .action .ui.button {
+    margin-top: -0.6rem;
   }
 
   .ui.comments .comment {

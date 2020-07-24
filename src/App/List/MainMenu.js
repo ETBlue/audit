@@ -72,6 +72,28 @@ const MainMenu = () => {
               </Button>
             </Input>
           </Menu.Item>
+          <Menu.Item
+            as={Link}
+            to={
+              queries.layout === 'collapsed'
+                ? getUrl({
+                    queries,
+                    pathname,
+                    name: 'layout',
+                    value: undefined
+                  })
+                : getUrl({
+                    queries,
+                    pathname,
+                    name: 'layout',
+                    value: 'collapsed'
+                  })
+            }
+          >
+            <Icon
+              name={queries.layout === 'collapsed' ? 'list layout' : 'content'}
+            />
+          </Menu.Item>
         </Menu.Menu>
       </Menu>
     </StyledMenu>
@@ -79,6 +101,11 @@ const MainMenu = () => {
 }
 
 export default MainMenu
+
+const getUrl = ({ queries, pathname, name, value }) => {
+  const newQueries = { ...queries, [name]: value }
+  return `${pathname}?${queryString.stringify(newQueries)}`
+}
 
 export const StyledMenu = styled(({ className, children }) => (
   <Segment inverted basic color='teal' className={className}>

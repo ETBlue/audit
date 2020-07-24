@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { Divider } from 'semantic-ui-react'
-import styled from 'styled-components'
 import queryString from 'query-string'
 import { chunk } from 'lodash'
 
@@ -11,6 +10,7 @@ import { PROPOSAL_COUNT_PER_PAGE } from 'App/config'
 
 import PageMenu from 'App/List/PageMenu'
 import Proposal from 'App/Proposal'
+import SimpleProposal from 'App/SimpleProposal'
 
 const Proposals = () => {
   const { status } = useParams()
@@ -39,7 +39,11 @@ const Proposals = () => {
       {listedProposals?.map(p => (
         <React.Fragment key={p.id}>
           <Divider section />
-          <Proposal proposal={p} />
+          {queries.layout === 'collapsed' ? (
+            <SimpleProposal proposal={p} />
+          ) : (
+            <Proposal proposal={p} />
+          )}
         </React.Fragment>
       )) || null}
       <Divider />

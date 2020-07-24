@@ -43,3 +43,7 @@ p {
 .center.aligned {
   text-align: center;
 }
+
+.ui.borderless.basic.button {
+  box-shadow: none;
+}
