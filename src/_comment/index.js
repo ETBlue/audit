@@ -4,7 +4,10 @@ export const fetchComments = async (id, callback) => {
   const { data } = await axios.get(
     `https://discuss.summit2020.g0v.tw/comments/get/${id}/0`
   )
-  callback(data.posts.map(post => getComment(post)))
+  callback({
+    url: `https://discuss.summit2020.g0v.tw/topic/${data.tid}`,
+    comments: data.posts.map(post => getComment(post))
+  })
 }
 
 const getComment = post => {
