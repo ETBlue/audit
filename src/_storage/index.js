@@ -1,25 +1,29 @@
 import React, { useCallback, useState } from 'react'
 
-import { getNotes, TEMPLATE, SITE_ID } from './helpers'
+import { getNotes, getTags, TEMPLATE, SITE_ID } from './helpers'
 import { STATUSES } from 'App/config'
 
 export const NotesContext = React.createContext()
 
 export const useNotes = () => {
   const [notes, setNotes] = useState(getNotes())
+  const [tags, setTags] = useState(getTags(notes))
 
   const getNote = useCallback(
     id => {
       const note = notes[id]
-
-      if (!note)
+      if (!note) {
         return {
           ...TEMPLATE
         }
+      }
 
-      if (!STATUSES.some(status => status.key === note.status))
+      if (!STATUSES.some(status => status.key === note.status)) {
         note.status = undefined
-
+      }
+      if (!note.tags || typeof note.tags !== 'object') {
+        note.tags = []
+      }
       return note
     },
     [notes]
@@ -33,6 +37,9 @@ export const useNotes = () => {
     notes[id] = note
     window.localStorage.setItem(SITE_ID, JSON.stringify(notes))
     setNotes({ ...notes })
+    if (name === 'tags') {
+      setTags(getTags(notes))
+    }
   }
 
   const saveNotes = string => {
@@ -42,5 +49,5 @@ export const useNotes = () => {
     setNotes(JSON.parse(trimmedString))
   }
 
-  return { notes, getNote, setNote, saveNotes }
+  return { notes, tags, getNote, setNote, saveNotes }
 }

@@ -9,12 +9,14 @@ import {
   Icon,
   Form
 } from 'semantic-ui-react'
+import Tags from '@yaireo/tagify/dist/react.tagify'
+import '@yaireo/tagify/dist/tagify.css'
 
 import { NotesContext } from '_storage'
 import { STATUSES, FACETS, HIGHLIGHTS } from 'App/config'
 
 const Note = ({ proposal, commentsVersion }) => {
-  const { getNote, setNote } = useContext(NotesContext)
+  const { tags, getNote, setNote } = useContext(NotesContext)
   const note = getNote(proposal.id)
 
   const handleChange = (e, { name, value, checked }) => {
@@ -30,6 +32,18 @@ const Note = ({ proposal, commentsVersion }) => {
   const isUpToDate = proposal.version === note.version
   const isCommentsUpToDate = commentsVersion === note.commentsVersion
   const isReviewed = Object.keys(note).some(key => !!note[key])
+
+  const handleTagsChange = e => {
+    setNote({
+      id: proposal.id,
+      name: 'tags',
+      value: e.currentTarget.value
+        ? JSON.parse(e.currentTarget.value).map(item => item.value.trim())
+        : [],
+      version: proposal.version,
+      commentsVersion: commentsVersion
+    })
+  }
 
   return (
     <>
@@ -101,6 +115,13 @@ const Note = ({ proposal, commentsVersion }) => {
               value={note.memo || ''}
               placeholder={`Auditor's memo...`}
               onChange={handleChange}
+            />
+            <Tags
+              placeholder='Track names...'
+              whitelist={tags}
+              dropdown={{ enabled: 0 }}
+              value={note.tags.join(',')}
+              onChange={handleTagsChange}
             />
           </Form>
           <List>

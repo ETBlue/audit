@@ -102,6 +102,34 @@ export const StyledContainer = styled.section`
     margin-top: -0.6rem;
   }
 
+  .tags-input {
+    .tagify {
+      border-radius: 0.28571429rem;
+      transition: color 0.1s ease, border-color 0.1s ease;
+      border: 1px solid rgba(34, 36, 38, 0.15);
+      line-height: 1.2857rem;
+      font-size: 0;
+
+      tag,
+      .tagify__input {
+        font-size: 1rem;
+      }
+
+      .tagify__input::before {
+        color: rgba(0, 0, 0, 0.87);
+        opacity: 0.27;
+      }
+
+      &.tagify--focus {
+        border-color: #85b7d9;
+        .tagify__input::before {
+          color: rgba(0, 0, 0, 0.95);
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
   .ui.comments .comment {
     border-top: 1px dashed rgba(34, 36, 38, 0.15);
 

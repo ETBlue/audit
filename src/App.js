@@ -12,13 +12,13 @@ import Instance from 'App/Instance'
 
 const App = () => {
   const { proposals, refetch } = useProposals()
-  const { notes, getNote, setNote, saveNotes } = useNotes()
-  const { sheet, fetchSheet, handleFetchDone } = useSheet()
+  const notesContext = useNotes()
+  const sheetContext = useSheet()
 
   return (
     <DataContext.Provider value={{ proposals, refetch }}>
-      <NotesContext.Provider value={{ notes, getNote, setNote, saveNotes }}>
-        <SheetContext.Provider value={{ sheet, fetchSheet, handleFetchDone }}>
+      <NotesContext.Provider value={{ ...notesContext }}>
+        <SheetContext.Provider value={{ ...sheetContext }}>
           <Switch>
             <Route path='/settings/:action?'>
               <Settings />

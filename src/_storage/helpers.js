@@ -16,7 +16,7 @@ export const TEMPLATE = {
   area: false,
   highlight_misc: false,
   memo: '',
-  version: undefined
+  tags: [],
   version: undefined,
   commentsVersion: undefined
 }
@@ -33,4 +33,17 @@ export const getNotes = () => {
   const startPosition = notes.indexOf('{')
   const trimmedNotes = notes.slice(startPosition)
   return JSON.parse(trimmedNotes)
+}
+
+export const getTags = notes => {
+  const uniqueTags = new Set()
+  for (const id in notes) {
+    const tags = notes[id].tags || []
+    if (tags.length > 0) {
+      for (const tag of tags) {
+        uniqueTags.add(tag)
+      }
+    }
+  }
+  return Array.from(uniqueTags).sort()
 }
