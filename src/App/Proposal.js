@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useParams, useLocation } from 'react-router-dom'
 import { Header, Divider, Grid, Icon, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
@@ -13,6 +13,7 @@ import Comments from './Proposal/Comments'
 const Proposal = ({ proposal }) => {
   const { id } = useParams()
   const { search } = useLocation()
+  const [commentsVersion, setCommentsVersion] = useState(undefined)
 
   const summaryProps = {
     proposal,
@@ -31,10 +32,10 @@ const Proposal = ({ proposal }) => {
           <Divider />
           <Speakers speakers={proposal.speakers} />
           <Divider />
-          <Comments id={proposal.id} />
+          <Comments id={proposal.id} setCommentsVersion={setCommentsVersion} />
         </Grid.Column>
         <Grid.Column width={7}>
-          <Note proposal={proposal} />
+          <Note proposal={proposal} commentsVersion={commentsVersion} />
         </Grid.Column>
       </Grid>
     </StyledContainer>

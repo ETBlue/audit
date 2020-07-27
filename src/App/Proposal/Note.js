@@ -13,7 +13,7 @@ import {
 import { NotesContext } from '_storage'
 import { STATUSES, FACETS, HIGHLIGHTS } from 'App/config'
 
-const Note = ({ proposal }) => {
+const Note = ({ proposal, commentsVersion }) => {
   const { getNote, setNote } = useContext(NotesContext)
   const note = getNote(proposal.id)
 
@@ -22,11 +22,13 @@ const Note = ({ proposal }) => {
       id: proposal.id,
       name,
       value: value || checked,
-      version: proposal.version
+      version: proposal.version,
+      commentsVersion: commentsVersion
     })
   }
 
   const isUpToDate = proposal.version === note.version
+  const isCommentsUpToDate = commentsVersion === note.commentsVersion
   const isReviewed = Object.keys(note).some(key => !!note[key])
 
   return (
@@ -35,6 +37,12 @@ const Note = ({ proposal }) => {
         <Message icon warning>
           <Icon name='exclamation triangle' color='yellow' />
           <Message.Content>Your review might be outdated</Message.Content>
+        </Message>
+      )}
+      {isReviewed && !isCommentsUpToDate && (
+        <Message icon warning>
+          <Icon name='comment alternate' color='yellow' />
+          <Message.Content>New comments arrival</Message.Content>
         </Message>
       )}
 
@@ -107,6 +115,22 @@ const Note = ({ proposal }) => {
                 <Label horizontal>
                   Reviewed version
                   <Label.Detail as='code'>{note.version}</Label.Detail>
+                </Label>
+              </List.Item>
+            )}
+          </List>
+          <List>
+            <List.Item>
+              <Label horizontal>
+                Current comments
+                <Label.Detail as='code'>{commentsVersion}</Label.Detail>
+              </Label>
+            </List.Item>
+            {isReviewed && (
+              <List.Item>
+                <Label horizontal>
+                  Viewed comments
+                  <Label.Detail as='code'>{note.commentsVersion}</Label.Detail>
                 </Label>
               </List.Item>
             )}

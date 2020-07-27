@@ -25,10 +25,11 @@ export const useNotes = () => {
     [notes]
   )
 
-  const setNote = ({ id, name, value, version }) => {
+  const setNote = ({ id, name, value, version, commentsVersion }) => {
     const note = getNote(id)
     note[name] = value
     note.version = version
+    note.commentsVersion = commentsVersion
     notes[id] = note
     window.localStorage.setItem(SITE_ID, JSON.stringify(notes))
     setNotes({ ...notes })

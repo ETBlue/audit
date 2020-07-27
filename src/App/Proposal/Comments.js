@@ -4,7 +4,7 @@ import { Button, Icon, Divider, Comment } from 'semantic-ui-react'
 
 import { fetchComments } from '_comment'
 
-const Comments = ({ id }) => {
+const Comments = ({ id, setCommentsVersion }) => {
   const [comments, setComments] = useState(null)
   const [url, setUrl] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -12,6 +12,7 @@ const Comments = ({ id }) => {
     setLoading(false)
     setUrl(data.url)
     setComments(data.comments)
+    setCommentsVersion(data.comments.length)
   }
   const handleRefresh = () => {
     setLoading(true)

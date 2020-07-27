@@ -17,6 +17,8 @@ export const TEMPLATE = {
   highlight_misc: false,
   memo: '',
   version: undefined
+  version: undefined,
+  commentsVersion: undefined
 }
 
 export const getNotes = () => {
