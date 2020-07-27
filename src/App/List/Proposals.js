@@ -67,6 +67,8 @@ const isProposalListed = ({ proposal, note, status, queries }) => {
 
   if (queries.highlight && !note[queries.highlight]) return false
 
+  if (queries.track && !note.tags.includes(queries.track)) return false
+
   if (queries.search && !JSON.stringify(proposal).includes(queries.search))
     return false
 

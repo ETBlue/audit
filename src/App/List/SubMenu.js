@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { Menu, Dropdown } from 'semantic-ui-react'
 import queryString from 'query-string'
 import styled from 'styled-components'
+
+import { NotesContext } from '_storage'
 
 import {
   MAX_CONTENT_WIDTH,
@@ -26,9 +28,11 @@ const SubMenu = () => {
   const { pathname, search } = useLocation()
   const queries = queryString.parse(search)
 
+  const { tags } = useContext(NotesContext)
+
   return (
     <StyledContainer>
-      <Menu secondary stackable widths={5}>
+      <Menu secondary stackable widths={6}>
         {MENUS.map(({ type, configs }) => (
           <Dropdown
             key={type}
@@ -57,6 +61,39 @@ const SubMenu = () => {
             </Dropdown.Menu>
           </Dropdown>
         ))}
+        <Dropdown
+          item
+          className={!!queries.track ? 'active' : ''}
+          text={queries.track || `All tracks`}
+        >
+          <Dropdown.Menu>
+            <Dropdown.Item
+              as={Link}
+              to={getLink({
+                queries,
+                pathname,
+                name: 'track',
+                value: undefined
+              })}
+            >
+              All tracks
+            </Dropdown.Item>
+            {tags.map(item => (
+              <Dropdown.Item
+                key={item}
+                as={Link}
+                to={getLink({
+                  queries,
+                  pathname,
+                  name: 'track',
+                  value: item
+                })}
+              >
+                {item}
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
       </Menu>
     </StyledContainer>
   )

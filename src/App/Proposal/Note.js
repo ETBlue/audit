@@ -30,7 +30,7 @@ const Note = ({ proposal, commentsVersion }) => {
   }
 
   const isUpToDate = proposal.version === note.version
-  const isCommentsUpToDate = commentsVersion === note.commentsVersion
+  const isCommentsUpToDate = commentsVersion <= note.commentsVersion
   const isReviewed = Object.keys(note).some(key => !!note[key])
 
   const handleTagsChange = e => {

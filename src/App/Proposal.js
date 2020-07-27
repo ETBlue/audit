@@ -13,7 +13,7 @@ import Comments from './Proposal/Comments'
 const Proposal = ({ proposal }) => {
   const { id } = useParams()
   const { search } = useLocation()
-  const [commentsVersion, setCommentsVersion] = useState(undefined)
+  const [commentsVersion, setCommentsVersion] = useState(0)
 
   const summaryProps = {
     proposal,

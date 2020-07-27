@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Message, Menu, Grid, Icon } from 'semantic-ui-react'
+import { Message, Menu, Grid, Icon, Label } from 'semantic-ui-react'
 
 import { NotesContext } from '_storage'
 import { STATUSES } from 'App/config'
@@ -47,6 +47,13 @@ const SimpleProposal = ({ proposal }) => {
             </Menu.Item>
           </Menu>
           <p className='info'>{note.memo}</p>
+          <p>
+            {note.tags.map(item => (
+              <Label key={item} horizontal>
+                {item}
+              </Label>
+            ))}
+          </p>
         </Grid.Column>
       </Grid>
     </StyledContainer>
