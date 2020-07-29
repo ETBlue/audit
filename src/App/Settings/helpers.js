@@ -1,9 +1,12 @@
 import { FACETS, HIGHLIGHTS } from 'App/config'
 
 const getScore = status => {
+  if (status === 'hellyes') return '3+'
   if (status === 'yes') return 3
   if (status === 'no') return 1
   if (status === 'unsure') return 2
+  if (status === 'skipped') return 'skipped'
+  if (status === 'wip') return 'wip'
   return ''
 }
 

@@ -6,6 +6,7 @@ export const STATUSES = [
   { key: undefined, color: 'grey', icon: 'clipboard list', name: 'TODO' },
   { key: 'wip', color: 'grey', icon: 'hourglass half', name: 'WIP' },
   { key: 'skipped', color: 'grey', icon: 'step forward', name: 'Skipped' },
+  { key: 'hellyes', color: 'green', icon: 'rocket', name: 'Hell YES' },
   { key: 'yes', color: 'green', icon: 'check', name: 'Yes' },
   { key: 'unsure', color: 'yellow', icon: 'question', name: 'Unsure' },
   { key: 'no', color: 'red', icon: 'ban', name: 'No' }
