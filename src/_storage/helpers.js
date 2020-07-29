@@ -18,7 +18,7 @@ export const TEMPLATE = {
   memo: '',
   tags: [],
   version: undefined,
-  commentsVersion: undefined
+  commentsVersion: 0
 }
 
 export const getNotes = () => {

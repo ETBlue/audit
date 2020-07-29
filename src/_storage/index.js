@@ -24,6 +24,9 @@ export const useNotes = () => {
       if (!note.tags || typeof note.tags !== 'object') {
         note.tags = []
       }
+      if (isNaN(note.commentsVersion)) {
+        note.commentsVersion = 0
+      }
       return note
     },
     [notes]
