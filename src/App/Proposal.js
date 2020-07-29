@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useParams, useLocation } from 'react-router-dom'
-import { Header, Divider, Grid, Icon, Button } from 'semantic-ui-react'
+import { List, Header, Divider, Grid, Icon, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 import { MAX_CONTENT_WIDTH } from 'App/config'
@@ -64,19 +64,23 @@ export const Summary = ({ proposal, id, search }) => (
       </a>
       <Header.Subheader>{proposal.title_en}</Header.Subheader>
     </Header>
-    {proposal.related_url && (
-      <p>
-        <a
-          href={proposal.related_url}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Related URL
-          {` `}
-          <Icon name='linkify' size='small' />
-        </a>
-      </p>
-    )}
+    <List>
+      {proposal.related_url
+        ?.split(',')
+        .map(item => item.trim())
+        .filter(item => !!item)
+        .map(item => (
+          <List.Item
+            as='a'
+            key={item}
+            href={item}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {item}
+          </List.Item>
+        ))}
+    </List>
     <p>{proposal.summary}</p>
     <p>{proposal.summary_en}</p>
   </>

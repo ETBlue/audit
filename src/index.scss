@@ -20,7 +20,7 @@ code,
   text-overflow: ellipsis;
 }
 
-a:not(.ui):not(.item) {
+a[href^='http'] {
   transition: all 0.25s ease-out;
   color: #008080 !important;
   opacity: 0.7;
