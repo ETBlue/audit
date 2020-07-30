@@ -9,7 +9,7 @@ import { NotesContext } from '_storage'
 import {
   MAX_CONTENT_WIDTH,
   TOPICS,
-  FORMATS,
+  FORMAT_TYPES,
   LICENSES,
   FACETS,
   HIGHLIGHTS
@@ -18,7 +18,7 @@ import { getLink } from './helpers'
 
 const MENUS = [
   { configs: TOPICS, type: 'topic' },
-  { configs: FORMATS, type: 'format' },
+  { configs: FORMAT_TYPES, type: 'format' },
   { configs: LICENSES, type: 'license' },
   { configs: FACETS, type: 'facet' },
   { configs: HIGHLIGHTS, type: 'highlight' }

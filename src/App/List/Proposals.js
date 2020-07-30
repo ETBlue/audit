@@ -56,12 +56,14 @@ const Proposals = () => {
 export default Proposals
 
 const isProposalListed = ({ proposal, note, status, queries }) => {
-  const properties = ['topic', 'format', 'license']
+  if (note.status !== status) return false
+
+  const properties = ['topic', 'license']
   for (const p of properties) {
     if (queries[p] && proposal[p] !== queries[p]) return false
   }
 
-  if (note.status !== status) return false
+  if (queries.format && !proposal.format?.includes(queries.format)) return false
 
   if (queries.facet && !note[queries.facet]) return false
 

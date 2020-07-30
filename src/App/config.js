@@ -51,6 +51,23 @@ export const TOPICS = [
   }
 ]
 
+export const FORMAT_TYPES = [
+  { key: undefined, icon: '', name: '', name_en: 'All formats' },
+  { key: 'talk', icon: 'user', name: '演講', name_en: 'Talk' },
+  {
+    key: 'panel',
+    icon: 'users',
+    name: '主題論壇',
+    name_en: 'Panel discussion'
+  },
+  {
+    key: 'workshop',
+    icon: 'hand paper',
+    name: '工作坊',
+    name_en: 'Workshop'
+  }
+]
+
 export const FORMATS = [
   { key: undefined, icon: '', name: '', name_en: 'All formats' },
   { key: 'talk', icon: 'user', name: '演講', name_en: 'Talk' },
