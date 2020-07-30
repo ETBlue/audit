@@ -18,7 +18,9 @@ import CopyButton from './CopyButton'
 const Backup = () => {
   const { notes, saveNotes } = useContext(NotesContext)
   const jsonString = JSON.stringify(notes)
-  const mdString = `# Audit Helper backup ${moment().format('YYYY-MM-DD')}
+  const mdString = `# Audit Helper backup ${moment().format(
+    'YYYY-MM-DD HH:mm:ss'
+  )}
 
   ${jsonString}
   `
