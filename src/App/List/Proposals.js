@@ -71,8 +71,10 @@ const isProposalListed = ({ proposal, note, status, queries }) => {
 
   if (queries.track && !note.tags.includes(queries.track)) return false
 
-  if (queries.search && !JSON.stringify(proposal).includes(queries.search))
-    return false
+  if (queries.search) {
+    const regex = new RegExp(queries.search, 'i')
+    return !!JSON.stringify(proposal).match(regex)
+  }
 
   return true
 }
