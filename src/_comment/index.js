@@ -1,22 +1,27 @@
 import axios from 'axios'
 
+const HOST_URL = 'https://discuss.summit2020.g0v.tw'
+
 export const fetchComments = async (id, callback) => {
-  const { data } = await axios.get(
-    `https://discuss.summit2020.g0v.tw/comments/get/${id}/0`
-  )
+  const { data } = await axios.get(`${HOST_URL}/comments/get/${id}/0`)
   callback({
-    url: `https://discuss.summit2020.g0v.tw/topic/${data.tid}`,
+    url: `${HOST_URL}/topic/${data.tid}`,
     comments: data.posts.map(post => getComment(post))
   })
 }
 
 const getComment = post => {
   return {
-    url: `https://discuss.summit2020.g0v.tw/post/${post.pid}`,
+    url: `${HOST_URL}/post/${post.pid}`,
     author: post.user.username,
-    profile: `https://discuss.summit2020.g0v.tw/uid/${post.user.uid}`,
+    profile: `${HOST_URL}/uid/${post.user.uid}`,
     timestamp: post.timestamp,
-    content: post.content,
+    content: getContent(post.content),
     groups: post.user.groupTitleArray.filter(item => !!item)
   }
 }
+
+const getContent = content =>
+  content
+    .replace('<img src="/assets/', `<img src="${HOST_URL}/assets/`)
+    .replace('class="img-responsive img-markdown"', 'class="ui image"')

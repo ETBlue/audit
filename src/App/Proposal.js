@@ -153,6 +153,7 @@ export const StyledContainer = styled.section`
 
     .js-lazyYT.lazyYT-container {
       width: 100% !important;
+      padding-bottom: 0 !important;
     }
   }
 `
