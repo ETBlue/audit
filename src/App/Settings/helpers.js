@@ -29,7 +29,11 @@ const getHighLights = note => {
 export const getSharedNote = note => {
   return {
     score: getScore(note.status),
-    notes: [note.memo || '', getFacets(note), getHighLights(note)]
+    notes: [
+      note.memo?.replace(/\n/g, '; ') || '',
+      getFacets(note),
+      getHighLights(note)
+    ]
       .filter(item => !!item)
       .join('；'),
     tracks: (note.tags || []).join('、')
